@@ -18,5 +18,6 @@ namespace BlogSitem.DLL.Enum
         Ekleme_basarili = 6,
         Pasif_Basarili = 7,
         Pasif_Edilirken_Hata_Olustu = 8,
+        Guncelleme_Basarili = 9,
     }
 }

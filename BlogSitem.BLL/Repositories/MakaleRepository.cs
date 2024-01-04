@@ -53,7 +53,6 @@ namespace BlogSitem.BLL.Repositories
                 makaleGuncelle.Baslik = makaleBaslik;
                 makaleGuncelle.OnaylayanKullaniciID = onaylayanKullaniciId;
                 makaleGuncelle.AktifMi = aktifMi;
-                //Update(makaleGuncelle);//????
 
                 return "Güncelleme başarılı";
             }
@@ -75,15 +74,20 @@ namespace BlogSitem.BLL.Repositories
 
         public string MakaleSil(int makaleId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var pasifEt = Get(makaleId);
+                pasifEt.AktifMi = false;
+                return DefinationMessages.Pasif_Basarili.ToString();
+            }
+            catch (Exception)
+            {
+                return DefinationMessages.Pasif_Edilirken_Hata_Olustu.ToString();
+            }
         }
         public IEnumerable<Sp_MakaleListesiDOM> Sp_MakaleListesi(bool aktifMi)
         {
             var getSP = _db.Sp_MakaleListesi().Where(k => k.AktifMi == aktifMi).ToList();
-            //Gerek kalmadı       //yazarlar=> Repo->1
-            //Gerek kalmadı       //Kullanıcılar=> Repo->2
-            //Gerek kalmadı       //Kategori=> Repo->3
-            //Makaleler=> Repo=> 4 deaf repo çağıracağımıza bir sp ile sadece tek makaleler reposu işimizi görecektir
             return getSP;
         }
         public IEnumerable<Sp_MakaleListesiDOM> Sp_MakaleListesi()

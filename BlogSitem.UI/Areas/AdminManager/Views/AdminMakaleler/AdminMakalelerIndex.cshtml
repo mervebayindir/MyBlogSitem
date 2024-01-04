@@ -1,4 +1,5 @@
-﻿
+﻿@using BlogSitem.DLL.BlogSiteDatabase
+@model List<Sp_MakaleListesiDOM>
 
 @section addTopLibrary{
     <link rel="stylesheet" href="~/templateAdmin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
@@ -10,9 +11,13 @@
         <div class="row mb-2">
             <div class="col-sm-6">
                 <h1 class="m-0">
-                    @Html.ActionLink("MAKALE EKLE", "#", "", new {@class="btn btn-block btn-success col-md-3"})
+                    @Html.ActionLink("MAKALE EKLE", "AdminMakaleEkle", "", new { @class = "btn btn-block btn-success col-md-3" })
                 </h1>
-            </div><!-- /.col -->
+                <br />
+                <div>
+                    @Html.Raw(ViewBag.mesaj)
+                </div>
+            </div>
             <div class="col-sm-6">
 
                 <ol class="breadcrumb float-sm-right">
@@ -45,22 +50,38 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet</td>
-                                    <td>Win 95+</td>
-                                    <td> 4</td>
-                                    <td>X</td>
-                                    <td>Trident</td>
-                                    <td>Trident</td>
-                                    <td>Trident</td>
-                                    <td>
-                                        <a href='#' class='btn btn-sm btn-warning' id=""><i class='fas fa-pencil-alt'></i></a>
-                                    </td>
-                                    <td>
-                                        <a href='#' class='btn btn-sm btn-danger' id=""><i class='fas fas fa-trash'></i></a>
-                                    </td>
-                                </tr>
+                                @foreach (var item in Model)
+                                {
+                    <tr>
+                        <td>@item.MakaleID</td>
+                        <td>@item.Baslik</td>
+                        <td>@item.EklenmeTarihi</td>
+                        @{ string metin = item.MakaleIcerik;
+
+                                            if (metin.Length > 150)
+                                            {
+
+                                                metin = metin.Substring(0, 100);
+
+                            <td>@metin @Html.ActionLink("OKU", "", "", new { @class = "btn btn-sm btn-primary" })</td> }
+                                            else
+                                            {
+                            <td>@metin</td> } }
+
+                        <td>
+                            @{ string aktiflik = item.AktifMi == true ? "EVET" : "HAYIR"; }
+                            @aktiflik
+                        </td>
+                        <td>@item.OnaylayanAdSoyad</td>
+                        <td>@item.KategoriAdi</td>
+                        <td>@item.YazarAdSoyad</td>
+                        <td>
+                            <a href='~/AdminManager/AdminMakaleler/AdminMakaleGuncelle/@item.MakaleID' class='btn btn-sm btn-warning' id="@item.MakaleID"><i class='fas fa-pencil-alt'></i></a>
+                        </td>
+                        <td>
+                            <a href='~/AdminManager/AdminMakaleler/AdminMakaleSil/@item.MakaleID' class='btn btn-sm btn-danger' id="@item.MakaleID"><i class='fas fas fa-trash'></i></a>
+                        </td>
+                    </tr>}
                             </tbody>
                         </table>
                     </div>
