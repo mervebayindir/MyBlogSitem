@@ -33,14 +33,16 @@ namespace BlogSitem.UI.Controllers
             return View();
         }
 
-        public ActionResult MakaleDetayIndex(int id =3)
+        public ActionResult MakaleDetayIndex(int id)
         {
             var makaleGetir = _makaleRepository.Sp_MakaleListesi(true).Where(k => k.MakaleID == id).FirstOrDefault();
             //ViewBag.kategoriList = _kategoriRepository.GetAll();
             TempData["makaleGetir"] = makaleGetir;
             TempData["kategoriList"] = _kategoriRepository.GetAll();
             TempData["makaleYorumlariGetir"] = _yorumRepository.MakaleYorumlari(id);
+            TempData["makaleAltYorumlari"] = _yorumRepository.MakaleAltYorumlari(id);
             TempData["makaleID"] = id;
+            ViewBag.yorumSayisi = _yorumRepository.MakaleYorumSayisi(id).Count();
 
             return View(makaleGetir);
         }

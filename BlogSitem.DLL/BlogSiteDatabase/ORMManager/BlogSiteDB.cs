@@ -25,7 +25,7 @@ namespace BlogSitem.DLL.BlogSiteDatabase.ORMManager
 
         public IEnumerable<Sp_YorumlarDOM> Sp_YorumListesi()
         {
-            var spGetir = Database.SqlQuery<Sp_YorumlarDOM>("EXEC Sp_Yorumlar");
+            var spGetir = Database.SqlQuery<Sp_YorumlarDOM>("EXEC sp_Yorumlar");
             return spGetir;
         }
 
