@@ -11,8 +11,8 @@ namespace BlogSitem.BLL.IRepositories
     public interface IYorumRepository : IRepository<Yorumlar>
     {
         string YorumEkle(string yorum, int yorumUstID, int kullaniciID, int makalelerID);
-        string YorumGuncelle(int yorumlarID, string yorum, int yorumUstID, int kullaniciID, int makalelerID);
-        string YorumSil(int yorumlarID);
+        string YorumGuncelle(int yorumID, string yorum);
+        string YorumSil(int yorumID);
         IEnumerable<Yorumlar> YorumListesi();
         IEnumerable<Yorumlar> MakaleYorumListesi(int makaleID);
     }

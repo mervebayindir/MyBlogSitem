@@ -19,6 +19,7 @@ namespace BlogSitem.UI.Areas.AdminManager.Controllers
             _db = new MerveBlogSiteDB();
             _kullaniciRepository = new KullaniciRepository(_db);
             _kategoriRepository = new KategoriRepository(_db);
+            ViewBag.kategoriList = _kategoriRepository.GetAll();
         }
 
         // GET: AdminManager/Base

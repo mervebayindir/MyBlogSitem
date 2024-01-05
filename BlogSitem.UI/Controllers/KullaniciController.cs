@@ -12,6 +12,13 @@ namespace BlogSitem.UI.Controllers
     {
         MerveBlogSiteDB _db;
         KullaniciRepository _kullaniciRepository;
+
+        public KullaniciController()
+        {
+            _db = new MerveBlogSiteDB();
+            _kullaniciRepository = new KullaniciRepository(_db);
+        }
+
         // GET: Kullanici
         public ActionResult GirisIndex(int? id = null)
         {
@@ -28,7 +35,7 @@ namespace BlogSitem.UI.Controllers
 
             if (kullaniciAdi != null)
             {
-                Session.Add("userName", kullaniciAdi); 
+                Session.Add("userName", kullaniciAdi);
                 Session.Add("userID", kullaniciGiris.KullaniciID);
 
                 string kullaniciAdiSoyadi = kullaniciGiris.Adi + " " + kullaniciGiris.Soyadi;
@@ -36,10 +43,10 @@ namespace BlogSitem.UI.Controllers
 
                 if ((int)TempData["makaleID"] != 0)
                 {
-                    return RedirectToAction("MakaleDetayIndex", "Makaleler", new { id = TempData["makaleID"] });
+                    return RedirectToAction("MakaleDetayIndex", "Makale", new { id = TempData["makaleID"] });
                 }
 
-                return RedirectToAction("MakaleIndex", "Makaleler");
+                return RedirectToAction("MakaleIndex", "Makale");
             }
             return View();
         }

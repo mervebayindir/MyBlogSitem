@@ -30,6 +30,23 @@ namespace BlogSitem.BLL.Repositories
             return getir;
         }
 
+        public IEnumerable<Sp_YorumlarDOM> MakaleYorumlari(int makaleID)
+        {
+            var getir = _db.Sp_YorumListesi().Where(k => k.Makale_MakaleID == makaleID).ToList();
+            return getir;
+        }
+
+        public IEnumerable<Sp_YorumlarDOM> MakaleAltYorumlari(int makaleID)
+        {
+            var getir = _db.Sp_YorumListesi().Where(k => k.YorumUstID != 0 && k.Makale_MakaleID == makaleID).ToList();
+            return getir;
+        }
+        public List<Yorumlar> MakaleYorumSayisi(int makaleID)
+        {
+            var yorumSayisi = _db.Yorum.Where(y => y.Makale.MakaleID == makaleID).ToList();
+            return yorumSayisi;
+        }
+
         public string YorumEkle(string yorum, int yorumUstID, int kullaniciID, int makalelerID)
         {
             try
@@ -50,14 +67,19 @@ namespace BlogSitem.BLL.Repositories
             }
         }
 
-        //public IEnumerable<Sp_YorumlarDOM> MakaleAltYorumlari(int makaleID)
-        //{
-        //    var getir =_db.Sp_MakaleListesi().Where(k=>k.)
-        //}
-
-        public string YorumGuncelle(int yorumlarID, string yorum, int yorumUstID, int kullaniciID, int makalelerID)
+        public string YorumGuncelle(int yorumID, string yorum)
         {
-            throw new NotImplementedException();
+            var yorumGuncelle = Find(k => k.YorumID == yorumID).FirstOrDefault();
+            try
+            {
+                yorumGuncelle.Yorum = yorum;
+                yorumGuncelle.YorumTarihi = DateTime.Now;
+                return "Güncelleme başarılı";
+            }
+            catch (Exception)
+            {
+                return "Güncelleme işlemi esnasında hata oluştu";
+            }
         }
 
         public IEnumerable<Yorumlar> YorumListesi()
@@ -65,9 +87,21 @@ namespace BlogSitem.BLL.Repositories
             return GetAll();
         }
 
-        public string YorumSil(int yorumlarID)
+        public string YorumSil(int yorumID)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var yorumSil = Get(yorumID);
+                if (yorumSil != null)
+                {
+                    Remove(yorumSil);
+                }
+                return "Silme işlemi başarılı";
+            }
+            catch (Exception)
+            {
+                return "Silme işlemi başarısız";
+            }
         }
     }
 }

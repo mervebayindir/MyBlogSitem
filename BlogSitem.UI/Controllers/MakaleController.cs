@@ -14,28 +14,34 @@ namespace BlogSitem.UI.Controllers
         MerveBlogSiteDB _db;
         KategoriRepository _kategoriRepository;
         MakaleRepository _makaleRepository;
+        YorumRepository _yorumRepository;
 
         public MakaleController()
         {
             _db = new MerveBlogSiteDB();
             _kategoriRepository = new KategoriRepository(_db);
             _makaleRepository = new MakaleRepository(_db);
+            _yorumRepository = new YorumRepository(_db);
         }
 
         // GET: Makale
         public ActionResult MakaleIndex()
         {
+            //ViewBag.kategoriList = _kategoriRepository.GetAll();
             TempData["kategoriList"] = _kategoriRepository.GetAll();
             TempData["makaleList"] = _makaleRepository.Sp_MakaleListesi(true);
             return View();
         }
 
-        public ActionResult MakaleDetayIndex(int id = 3)
+        public ActionResult MakaleDetayIndex(int id =3)
         {
             var makaleGetir = _makaleRepository.Sp_MakaleListesi(true).Where(k => k.MakaleID == id).FirstOrDefault();
+            //ViewBag.kategoriList = _kategoriRepository.GetAll();
             TempData["makaleGetir"] = makaleGetir;
             TempData["kategoriList"] = _kategoriRepository.GetAll();
+            TempData["makaleYorumlariGetir"] = _yorumRepository.MakaleYorumlari(id);
             TempData["makaleID"] = id;
+
             return View(makaleGetir);
         }
 
