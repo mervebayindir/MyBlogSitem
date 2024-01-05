@@ -1,5 +1,6 @@
 ﻿using BlogSitem.BLL.Repositories;
 using BlogSitem.DLL.BlogSiteDatabase.ORMManager;
+using BlogSitem.UI.Areas.AdminManager.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Web.Mvc;
 
 namespace BlogSitem.UI.Controllers
 {
-    public class MakaleController : Controller
+    public class MakaleController : BaseController
     {
         MerveBlogSiteDB _db;
         KategoriRepository _kategoriRepository;
@@ -24,7 +25,6 @@ namespace BlogSitem.UI.Controllers
         // GET: Makale
         public ActionResult MakaleIndex()
         {
-            //ViewBag.mesaj = _kategoriRepository.MakaleSayisi(kategoriID);
             TempData["kategoriList"] = _kategoriRepository.GetAll();
             TempData["makaleList"] = _makaleRepository.Sp_MakaleListesi(true);
             return View();
@@ -35,10 +35,11 @@ namespace BlogSitem.UI.Controllers
             var makaleGetir = _makaleRepository.Sp_MakaleListesi(true).Where(k => k.MakaleID == id).FirstOrDefault();
             TempData["makaleGetir"] = makaleGetir;
             TempData["kategoriList"] = _kategoriRepository.GetAll();
+            TempData["makaleID"] = id;
             return View(makaleGetir);
         }
 
-        
+
 
 
     }

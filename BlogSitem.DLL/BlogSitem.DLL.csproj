@@ -59,6 +59,7 @@
     <Compile Include="BlogSiteDatabase\ORMManager\BlogSiteDB.cs" />
     <Compile Include="BlogSiteDatabase\Resimler.cs" />
     <Compile Include="BlogSiteDatabase\Sp_MakaleListesiDOM.cs" />
+    <Compile Include="BlogSiteDatabase\Sp_YorumlarDOM.cs" />
     <Compile Include="BlogSiteDatabase\Yazarlar.cs" />
     <Compile Include="BlogSiteDatabase\Yetkiler.cs" />
     <Compile Include="BlogSiteDatabase\Yorumlar.cs" />

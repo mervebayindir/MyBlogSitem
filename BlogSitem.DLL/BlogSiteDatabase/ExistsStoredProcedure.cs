@@ -51,5 +51,27 @@ namespace BlogSitem.DLL.BlogSiteDatabase
                 return "HATA:" + ex.Message;
             }
         }
+
+        public string Sp_Yorumlar()
+        {
+            try
+            {
+                string sql = @"create proc sp_Yorumlar
+                                as
+                                begin
+                                select y.YorumID,                                                    
+                                k.KullaniciID,y.Makale_MakaleID,k.Adi,k.Soyadi,k.YazarMi,k.AktifMi,k.Yetki_YetkiID,
+                                y.Yorum,y.YorumUstID,y.YorumTarihi from Kullanicilars as k
+                                join Yorumlars as y on y.Kullanici_KullaniciID=k.KullaniciID
+                                end";
+                var list = _db.Database.ExecuteSqlCommand(sql);
+                return "Sp_Yorumlar adındaki Sp başarılı bir şekilde oluşturuldu";
+            }
+            catch (Exception ex)
+            {
+                return "HATA:" + ex.Message;
+            }
+
+        }
     }
 }

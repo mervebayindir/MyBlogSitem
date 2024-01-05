@@ -27,7 +27,9 @@ namespace BlogSitem.UnitTest
             //var createYorumSp = createSP.Sp_Yorumlar();
 
 
-            return createSP.Sp_MakaleListesi();
+            //return createSP.Sp_MakaleListesi();
+            return createSP.Sp_Yorumlar();
+
         }
 
     }

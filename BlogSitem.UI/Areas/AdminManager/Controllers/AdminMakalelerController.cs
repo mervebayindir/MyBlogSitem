@@ -68,10 +68,10 @@ namespace BlogSitem.UI.Areas.AdminManager.Controllers
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult AdminMakaleGuncelle(int id, string baslik, string makaleIcerik, string aktiflik, int kategoriID)
+        public ActionResult AdminMakaleGuncelle(int id, string baslik, string makaleIcerik, bool AktifMi, int kategoriID)
         {
             ViewBag.kategori = _kategoriRepository.GetAll();
-            var guncelle = _makaleRepository.MakaleGuncelle(id, 2, kategoriID, baslik, makaleIcerik, Convert.ToBoolean(aktiflik), 2);
+            var guncelle = _makaleRepository.MakaleGuncelle(id, 2, kategoriID, baslik, makaleIcerik, Convert.ToBoolean(AktifMi), 2);
             int sonuc = _unitOfWork.SaveChanges();
             if (sonuc > 0)
             {

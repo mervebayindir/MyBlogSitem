@@ -130,6 +130,7 @@
     <Compile Include="Areas\AdminManager\Controllers\AdminAnasayfaController.cs" />
     <Compile Include="Areas\AdminManager\Controllers\AdminMakalelerController.cs" />
     <Compile Include="Controllers\AnasayfaController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\KullaniciController.cs" />
     <Compile Include="Controllers\MakaleController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2430,7 +2431,6 @@
     <Content Include="template\assets\vendor\remixicon\remixicon.woff" />
     <Content Include="template\assets\vendor\remixicon\remixicon.woff2" />
     <Content Include="template\assets\vendor\swiper\swiper-bundle.min.js.map" />
-    <Content Include="Views\Shared\_DefaultLayout.cshtml" />
     <Content Include="Views\Anasayfa\AnasayfaIndex.cshtml" />
     <Content Include="templateAdmin\.browserslistrc" />
     <Content Include="templateAdmin\.bundlewatch.config.json" />
@@ -2772,10 +2772,13 @@
     <Content Include="Views\Makale\MakaleDetayIndex.cshtml" />
     <Content Include="Views\Shared\_Yorumlar.cshtml" />
     <Content Include="Views\Kullanici\GirisIndex.cshtml" />
+    <Content Include="Views\Shared\_DefaultLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\AdminManager\Data\" />
+    <Folder Include="Areas\AdminManager\Views\Base\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

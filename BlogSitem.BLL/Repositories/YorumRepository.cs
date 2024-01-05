@@ -40,9 +40,6 @@ namespace BlogSitem.BLL.Repositories
                 yorumEkle.YorumUstID = yorumUstID;
                 yorumEkle.Kullanici = _db.Kullanici.Where(k => k.KullaniciID == kullaniciID).FirstOrDefault();
                 yorumEkle.Makale = _db.Makale.Where(m => m.MakaleID == makalelerID).FirstOrDefault();
-                //_db.Yorumlar.Add(yorumEkle);
-                //_db.SaveChanges();
-                //yukardaki 2 yapı Repository de olduğu için kalıtımdan alarak işlem yapıyoruz
                 Add(yorumEkle);
                 return "Ekleme başarılı";
 
@@ -52,6 +49,11 @@ namespace BlogSitem.BLL.Repositories
                 return "Ekleme işlemi esnasında hata oluştu";
             }
         }
+
+        //public IEnumerable<Sp_YorumlarDOM> MakaleAltYorumlari(int makaleID)
+        //{
+        //    var getir =_db.Sp_MakaleListesi().Where(k=>k.)
+        //}
 
         public string YorumGuncelle(int yorumlarID, string yorum, int yorumUstID, int kullaniciID, int makalelerID)
         {
