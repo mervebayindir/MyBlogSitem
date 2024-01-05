@@ -24,16 +24,20 @@ namespace BlogSitem.UI.Controllers
         // GET: Makale
         public ActionResult MakaleIndex()
         {
-            //TempData["makaleSayisi"] = _kategoriRepository.MakaleSayisi(kategoriID);
+            //ViewBag.mesaj = _kategoriRepository.MakaleSayisi(kategoriID);
             TempData["kategoriList"] = _kategoriRepository.GetAll();
             TempData["makaleGetir"] = _makaleRepository.Sp_MakaleListesi(true);
             return View();
         }
 
-        public ActionResult MakaleDetayIndex()
+        public ActionResult MakaleDetayIndex(int id)
         {
-            return View();
+            var makaleGetir = _makaleRepository.Sp_MakaleListesi(true).Where(k => k.MakaleID == id);
+            TempData["makaleGetir"] = makaleGetir;
+            return View(makaleGetir);
         }
+
+        
 
 
     }

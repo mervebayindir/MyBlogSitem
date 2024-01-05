@@ -15,7 +15,7 @@
         <ul>
             @foreach (var item in (List<MakaleKategoriler>) TempData["kategoriList"] )
             {
-            <li><a onclick="MakaleKategori(@item.KategoriID)" href="~/Makaleler/MakaleIndex/@item.KategoriID">@item.KategoriAdi <span>(25)</span></a></li>
+            <li><a onclick="MakaleKategori(@item.KategoriID)" href="~/Makaleler/MakaleIndex/@item.KategoriID">@item.KategoriAdi <span>(@item.MakaleID.Where(k=>k.MakaleKategoriID.KategoriID == item.KategoriID).Count())</span></a></li>
             } 
         </ul>
     </div><!-- End sidebar categories-->

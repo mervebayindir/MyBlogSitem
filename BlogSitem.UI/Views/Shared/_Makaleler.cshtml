@@ -15,7 +15,7 @@
                     <div class="post-box">
                         <div class="post-img"><img src="~/template/assets/img/blog/blog-1.jpg" class="img-fluid" alt=""></div>
                         <span class="post-date">@item.EklenmeTarihi.ToShortDateString()</span>
-                        <h3 class="note-palette-title">@item.Baslik</h3>
+                        <h3 class="post-title">@item.Baslik</h3>
 
                         @{
                             string metin = item.MakaleIcerik;
@@ -26,7 +26,7 @@
                         }
                         <p class="post-item">@metin
                         </p>
-                        <a href="blog-single.html" class="readmore stretched-link mt-auto"><span>Devamını Oku</span><i class="bi bi-arrow-right"></i></a>
+                        <a href="/Makaleler/MakaleDetayIndex/@item.MakaleID" class="readmore stretched-link mt-auto"><span>Devamını Oku</span><i class="bi bi-arrow-right"></i></a>
                     </div>
             </div>
         }

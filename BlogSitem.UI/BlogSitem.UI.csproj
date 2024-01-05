@@ -2768,6 +2768,7 @@
     <Content Include="Views\Makale\MakaleIndex.cshtml" />
     <Content Include="Views\Shared\_Makaleler.cshtml" />
     <Content Include="Views\Shared\_Kategoriler.cshtml" />
+    <Content Include="Views\Makale\MakaleDetayIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
