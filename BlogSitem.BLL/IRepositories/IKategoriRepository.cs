@@ -10,6 +10,7 @@ namespace BlogSitem.BLL.IRepositories
 {
     public interface IKategoriRepository : IRepository<MakaleKategoriler>
     {
+        int MakaleSayisi(int kategoriID);
         int KategoriSayisi(int kategoriID);
         string KategoriEkle(string kategoriAdi, string aciklama);
         string KategoriGuncelle(int kategoriID, string kategoriAdi, string aciklama);

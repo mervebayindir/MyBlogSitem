@@ -77,5 +77,11 @@ namespace BlogSitem.BLL.Repositories
             }
         }
 
+        public int MakaleSayisi(int kategoriID)
+        {
+            var makaleSayisi = Find(k => k.KategoriID == kategoriID).Select(k => k.MakaleID).Count();          
+
+            return makaleSayisi;
+        }
     }
 }
