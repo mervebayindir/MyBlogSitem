@@ -130,6 +130,7 @@
     <Compile Include="Areas\AdminManager\Controllers\AdminAnasayfaController.cs" />
     <Compile Include="Areas\AdminManager\Controllers\AdminMakalelerController.cs" />
     <Compile Include="Controllers\AnasayfaController.cs" />
+    <Compile Include="Controllers\KullaniciController.cs" />
     <Compile Include="Controllers\MakaleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2769,6 +2770,8 @@
     <Content Include="Views\Shared\_Makaleler.cshtml" />
     <Content Include="Views\Shared\_Kategoriler.cshtml" />
     <Content Include="Views\Makale\MakaleDetayIndex.cshtml" />
+    <Content Include="Views\Shared\_Yorumlar.cshtml" />
+    <Content Include="Views\Kullanici\GirisIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

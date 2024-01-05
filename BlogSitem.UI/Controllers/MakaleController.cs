@@ -26,14 +26,15 @@ namespace BlogSitem.UI.Controllers
         {
             //ViewBag.mesaj = _kategoriRepository.MakaleSayisi(kategoriID);
             TempData["kategoriList"] = _kategoriRepository.GetAll();
-            TempData["makaleGetir"] = _makaleRepository.Sp_MakaleListesi(true);
+            TempData["makaleList"] = _makaleRepository.Sp_MakaleListesi(true);
             return View();
         }
 
-        public ActionResult MakaleDetayIndex(int id)
+        public ActionResult MakaleDetayIndex(int id = 3)
         {
-            var makaleGetir = _makaleRepository.Sp_MakaleListesi(true).Where(k => k.MakaleID == id);
+            var makaleGetir = _makaleRepository.Sp_MakaleListesi(true).Where(k => k.MakaleID == id).FirstOrDefault();
             TempData["makaleGetir"] = makaleGetir;
+            TempData["kategoriList"] = _kategoriRepository.GetAll();
             return View(makaleGetir);
         }
 

@@ -9,7 +9,7 @@
         </header>
 
         <div class="row">
-            @foreach (var item in (List<Sp_MakaleListesiDOM>)TempData["makaleGetir"])
+            @foreach (var item in (List<Sp_MakaleListesiDOM>)TempData["makaleList"])
             {
                 <div class="col-lg-4">
                     <div class="post-box">
@@ -26,7 +26,7 @@
                         }
                         <p class="post-item">@metin
                         </p>
-                        <a href="/Makaleler/MakaleDetayIndex/@item.MakaleID" class="readmore stretched-link mt-auto"><span>Devamını Oku</span><i class="bi bi-arrow-right"></i></a>
+                        <a href="/Makale/MakaleDetayIndex/@item.MakaleID" class="readmore stretched-link mt-auto"><span>Devamını Oku</span><i class="bi bi-arrow-right"></i></a>
                     </div>
             </div>
         }

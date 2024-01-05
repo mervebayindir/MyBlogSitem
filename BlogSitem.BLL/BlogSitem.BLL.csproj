@@ -59,10 +59,12 @@
     <Compile Include="FakeDatalar\YazarFakeData.cs" />
     <Compile Include="IRepositories\IKategoriRepository.cs" />
     <Compile Include="IRepositories\IMakaleRepository.cs" />
+    <Compile Include="IRepositories\IKullaniciRepository.cs" />
     <Compile Include="IRepositories\IYorumRepository.cs" />
     <Compile Include="Manager\MakaleManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\KategoriRepository.cs" />
+    <Compile Include="Repositories\KullaniciRepository.cs" />
     <Compile Include="Repositories\MakaleRepository.cs" />
     <Compile Include="Repositories\YorumRepository.cs" />
   </ItemGroup>
