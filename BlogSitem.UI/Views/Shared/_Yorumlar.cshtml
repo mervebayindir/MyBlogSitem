@@ -54,13 +54,13 @@
     <p>Yorum yapabilmek için lütfen giriş yapın.* </p>
     @if (Session["userName"] != null)
     {
-        <input type="text" name="name" id="kullaniciId" value="@ViewBag.kullaniciId" hidden />
+        @*<input type="text" name="name" id="kullaniciId" value="@ViewBag.kullaniciId" hidden />*@
         <div class="row">
             <div class="col-md-6 form-group">
-                <input name="name" id="ad" type="text" class="form-control" placeholder="Kullanıcı Adınız*">
+                <input name="name" id="comment-name" type="text" class="form-control" placeholder="Kullanıcı Adınız*">
             </div>
             <div class="col-md-6 form-group">
-                <input name="email" id="email" type="text" class="form-control" placeholder="Email*">
+                <input name="email" id="comment-email" type="text" class="form-control" placeholder="Email*">
             </div>
         </div>
         <div class="row">

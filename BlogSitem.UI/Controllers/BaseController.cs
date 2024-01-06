@@ -24,6 +24,7 @@ namespace BlogSitem.UI.Areas.AdminManager.Controllers
             _kullaniciRepository = new KullaniciRepository(_db);
             _kategoriRepository = new KategoriRepository(_db);
             ViewBag.kategoriList = _kategoriRepository.GetAll();
+            TempData["kullaniciId"] = _kullaniciRepository.KullaniciGetir(kullaniciId);
 
             if (TempData["userAdiSoyadi"] != null)
             {

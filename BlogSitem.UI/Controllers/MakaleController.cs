@@ -19,6 +19,7 @@ namespace BlogSitem.UI.Controllers
         KategoriRepository _kategoriRepository;
         MakaleRepository _makaleRepository;
         YorumRepository _yorumRepository;
+        KullaniciRepository kullaniciRepository;
         UnitOfWork _unitOfWork;
         UyariMesaj uyariMesaj;
 
@@ -61,17 +62,16 @@ namespace BlogSitem.UI.Controllers
 
             return View(yorumList);
         }
-
         [HttpPost]
-        public ActionResult MakaleYorum(string yorumIcerik, int makaleId)//Yorum ekler
-        {          
-            var ekle = _yorumRepository.YorumEkle(yorumIcerik, 0, 4, makaleId);
-            _unitOfWork.SaveChanges();
+        public ActionResult MakaleYorum(string yorumIcerik, int makaleId, string adi)
+        {
+            var ekle = _yorumRepository.YorumEkle(yorumIcerik, 0, kullaniciId, makaleId);
+            _unitOfWork.SaveChanges();          
 
             Sp_YorumlarDOM yorumData = new Sp_YorumlarDOM();
             yorumData.YorumTarihi = DateTime.Now;
-            yorumData.Adi = ViewBag.kullaniciAdi;
-            yorumData.Soyadi = ViewBag.kullaniciSoyadi;
+            yorumData.Adi = adi;
+            //yorumData.Soyadi = soyadi;
             yorumData.Yorum = yorumIcerik;
             yorumData.YorumUstID = 0;
 

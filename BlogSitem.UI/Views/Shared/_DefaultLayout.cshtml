@@ -62,14 +62,35 @@
                             @foreach (var item in ViewBag.kategoriList)
                             {
                                 <li><a href="@item.KategoriID">@item.KategoriAdi</a></li>
-                            }
+                             }
                         </ul>
                     </li>
                     <li><a class="nav-link scrollto" href="#contact">İletişim</a></li>
-                    @*<li><a class="getstarted scrollto" href="#about">Get Started</a></li>*@
+                    <li>
+                        @if (Session["userName"] != null)
+                        {
+                           <a href="#" class="mx-2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="bi-box-arrow-in-right bi-person">@Session["userName"]</span></a>
+
+                            <div class="dropdown-menu">
+                                @if (Session["userYetki"].ToString() == BlogSitem.UI.Models.YetkilerEnums.Admin.GetHashCode().ToString() || Session["userYetki"].ToString() == BlogSitem.UI.Models.YetkilerEnums.Yazar.GetHashCode().ToString())
+                                {
+
+                                <a class="dropdown-item" href="~/AdminPanel/AdminAnasayfa/AdminAnasayfaIndex/@TempData["kullaniciID"] ">Admin Paneli</a>}
+                                <a class="dropdown-item" href="~/Kullanici/KullaniciCikis">Çıkış</a>
+
+                            </div> 
+                                 }
+                                 else
+                                 {
+                                 <a href="~/Kullanici/GirisIndex" class="mx-2"><span class="bi-box-arrow-in-right">  Giriş</span></a>}
+
+                                 @*<a class="getstarted scrollto" href="#about">Get Started</a>*@
+
+                    </li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
+
 
 
         </div>
@@ -163,7 +184,7 @@
     <!-- Template Main JS File -->
     <script src="~/template/assets/js/main.js"></script>
 
-       @RenderSection("menuSecimi", false)
+    @RenderSection("menuSecimi", false)
 
 </body>
 
