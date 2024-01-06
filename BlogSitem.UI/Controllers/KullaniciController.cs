@@ -1,5 +1,6 @@
 ﻿using BlogSitem.BLL.Repositories;
 using BlogSitem.DLL.BlogSiteDatabase.ORMManager;
+using BlogSitem.UI.Areas.AdminManager.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Web.Mvc;
 
 namespace BlogSitem.UI.Controllers
 {
-    public class KullaniciController : Controller
+    public class KullaniciController : BaseController
     {
         MerveBlogSiteDB _db;
         KullaniciRepository _kullaniciRepository;
@@ -29,26 +30,35 @@ namespace BlogSitem.UI.Controllers
             return View();
         }
 
+        [HttpPost]
         public ActionResult GirisIndex(string kullaniciAdi, string sifre)
         {
             var kullaniciGiris = _kullaniciRepository.Giris(kullaniciAdi, sifre);
 
-            if (kullaniciAdi != null)
+            if (kullaniciGiris != null)
             {
-                Session.Add("userName", kullaniciAdi);
-                Session.Add("userID", kullaniciGiris.KullaniciID);
+                string adSoyad = kullaniciGiris.Adi + " " + kullaniciGiris.Soyadi;
 
-                string kullaniciAdiSoyadi = kullaniciGiris.Adi + " " + kullaniciGiris.Soyadi;
-                TempData["userAdiSoyadi"] = kullaniciAdiSoyadi;
+                string yetki = kullaniciGiris.Yetki.YetkiID.ToString();
+                Session.Add("userName", adSoyad);
+                Session.Add("userYetki", yetki);
+                string kullaniciAdSoyad = kullaniciGiris.Adi + " " + kullaniciGiris.Soyadi;
+                TempData["userAdiSoyadi"] = kullaniciAdSoyad;
+                TempData["kullaniciID"] = kullaniciGiris.KullaniciID;
 
-                if ((int)TempData["makaleID"] != 0)
+                if (TempData["makaleID"] != null)
                 {
                     return RedirectToAction("MakaleDetayIndex", "Makale", new { id = TempData["makaleID"] });
                 }
-
-                return RedirectToAction("MakaleIndex", "Makale");
+                return RedirectToAction("AnasayfaIndex", "Anasayfa");
             }
             return View();
+        }
+
+        public ActionResult KullaniciCikis()
+        {
+            Session.Clear();
+            return RedirectToAction("GirisIndex");
         }
     }
 }

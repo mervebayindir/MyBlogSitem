@@ -3,14 +3,17 @@
 <div class="blog-comments">
 
     <h4 class="comments-count">ViewBag.yorumSayisi</h4>
-    @*@{
-            string makaleId = TempData["makaleID"].ToString();
-        }*@
+    @{
+        string makaleId = TempData["makaleID"].ToString();
+    }
+
+    <input type="text" id="makaleID" name="name" value="@makaleId" hidden />
+
     @foreach (var item in (List<Sp_YorumlarDOM>)TempData["makaleYorumlariGetir"])
     {
         if (item.YorumUstID == 0)
         {
-            <div id="comment-2" class="comment">
+            <div id="yorumAlani" class="comment">
                 <div class="d-flex">
                     <div class="comment-img"><img src="~/template/assets/img/blog/comments-2.jpg" alt=""></div>
                     <div>
@@ -64,16 +67,15 @@
             </div>
             <div class="row">
                 <div class="col form-group">
-                    <input name="website" type="text" class="form-control" placeholder="Your Website">
+                    <textarea name="comment" id="comment-message" class="form-control" placeholder="Your Comment*"></textarea>
                 </div>
             </div>
-            <div class="row">
-                <div class="col form-group">
-                    <textarea name="comment" class="form-control" placeholder="Your Comment*"></textarea>
-                </div>
-            </div>
-            @*<button type="submit" class="btn btn-primary">Post Comment</button>*@
+            <button type="submit" onclick="YorumKaydet()" class="btn btn-primary">Yorum Gönder</button>
         }
-        @Html.ActionLink("Yorum Yap", "GirisIndex", "Kullanici", new { id = 10 }, new { @class = "btn btn-primary" })
+        else
+        {
+            @Html.ActionLink("Yorum Yap", "GirisIndex", "Kullanici", new { id = makaleId }, new { @class = "btn btn-primary" })
+        }
+
     </div>
 </div><!-- End blog comments -->

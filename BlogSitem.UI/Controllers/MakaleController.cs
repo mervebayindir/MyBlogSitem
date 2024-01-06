@@ -1,5 +1,7 @@
 ﻿using BlogSitem.BLL.Repositories;
+using BlogSitem.DLL.BlogSiteDatabase;
 using BlogSitem.DLL.BlogSiteDatabase.ORMManager;
+using BlogSitem.DLL.UnitOfWork;
 using BlogSitem.UI.Areas.AdminManager.Controllers;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,7 @@ namespace BlogSitem.UI.Controllers
         KategoriRepository _kategoriRepository;
         MakaleRepository _makaleRepository;
         YorumRepository _yorumRepository;
+        UnitOfWork _unitOfWork;
 
         public MakaleController()
         {
@@ -22,6 +25,7 @@ namespace BlogSitem.UI.Controllers
             _kategoriRepository = new KategoriRepository(_db);
             _makaleRepository = new MakaleRepository(_db);
             _yorumRepository = new YorumRepository(_db);
+            _unitOfWork = new UnitOfWork(_db);
         }
 
         // GET: Makale
@@ -30,6 +34,7 @@ namespace BlogSitem.UI.Controllers
             //ViewBag.kategoriList = _kategoriRepository.GetAll();
             TempData["kategoriList"] = _kategoriRepository.GetAll();
             TempData["makaleList"] = _makaleRepository.Sp_MakaleListesi(true);
+            
             return View();
         }
 
@@ -47,7 +52,29 @@ namespace BlogSitem.UI.Controllers
             return View(makaleGetir);
         }
 
+        [HttpGet]
+        public ActionResult MakaleYorum()//Yorum ekler
+        {
+            var yorumList = _yorumRepository.YorumListesi();
 
+            return View(yorumList);
+        }
+
+        [HttpPost]
+        public ActionResult MakaleYorum(string yorumIcerik, int makaleId)//Yorum ekler
+        {
+            var ekle = _yorumRepository.YorumEkle(yorumIcerik, 0, 4, makaleId);
+            _unitOfWork.SaveChanges();
+
+            Sp_YorumlarDOM yorumData = new Sp_YorumlarDOM();
+            yorumData.YorumTarihi = DateTime.Now;
+            yorumData.Adi = ViewBag.userAdiSoyadi;
+            yorumData.Soyadi = KullaniciSoyadi;
+            yorumData.Yorum = yorumIcerik;
+            yorumData.YorumUstID = 0;
+
+            return Json(yorumData, JsonRequestBehavior.AllowGet);
+        }
 
 
     }
