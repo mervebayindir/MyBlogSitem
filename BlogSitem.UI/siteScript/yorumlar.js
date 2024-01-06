@@ -16,14 +16,10 @@ function YorumKaydet() {
                 var yorumAlani = '<div><h5><a href="">' + data.adi + '</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Yanıtla</a></h5><time datetime="' + yorumTarihi.toISOString() + '">' + yorumTarihi.toLocaleString() + '</time><p>' + data.yorum + '</p></div></div></div>';
 
                 $(".comment:last").append(yorumBaslama, yorumResim, yorumAlani);
-                
-                debugger;
-                window.location.href = "/Makale/MakaleDatayIndex/" + data.makaleId;
-                debugger;
             }
         },
         error: function () {
-           
         }
     });
+    location.reload();
 };
