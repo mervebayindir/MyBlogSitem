@@ -52,6 +52,7 @@ namespace BlogSitem.UI.Controllers
                 }
                 return RedirectToAction("AnasayfaIndex", "Anasayfa");
             }
+            ViewBag.hataMesaji = "Kullanıcı adı veya şifre hatalı.";
             return View();
         }
 

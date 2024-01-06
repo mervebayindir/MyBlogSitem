@@ -190,6 +190,12 @@
                     </div>
                 </div>
             </div>
+            @if (ViewBag.hataMesaji != null)
+            {
+                <div class="col-md-12 alert alert-danger">
+                    @ViewBag.hataMesaji
+                </div>
+            }
         </div>
     </div>
 </div>

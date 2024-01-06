@@ -137,6 +137,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\UyariMesaj.cs" />
+    <Compile Include="Models\YetkilerEnums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2774,6 +2775,7 @@
     <Content Include="Views\Shared\_Yorumlar.cshtml" />
     <Content Include="Views\Kullanici\GirisIndex.cshtml" />
     <Content Include="Views\Shared\_DefaultLayout.cshtml" />
+    <Content Include="Views\Makale\MakaleDuzenle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

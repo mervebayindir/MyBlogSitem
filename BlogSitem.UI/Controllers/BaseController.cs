@@ -16,6 +16,7 @@ namespace BlogSitem.UI.Areas.AdminManager.Controllers
         KategoriRepository _kategoriRepository;
         public string KullaniciSoyadi;
         public string _kullaniciBilgileri;
+        public int kullaniciId;
 
         public BaseController()
         {
@@ -23,12 +24,15 @@ namespace BlogSitem.UI.Areas.AdminManager.Controllers
             _kullaniciRepository = new KullaniciRepository(_db);
             _kategoriRepository = new KategoriRepository(_db);
             ViewBag.kategoriList = _kategoriRepository.GetAll();
+
             if (TempData["userAdiSoyadi"] != null)
             {
                 _kullaniciBilgileri = TempData["userAdiSoyadi"].ToString();
                 TempData["userAdiSoyadi"] = TempData["adSoyad"];
             }
-
+            //var kullanici = _kullaniciRepository.KullaniciGetir(kullaniciId);
+            //ViewBag.adi.kullaniciAdi =
+            //ViewBag.soyadi = kullanici.Soyadi;
         }
 
         // GET: AdminManager/Base
@@ -41,6 +45,8 @@ namespace BlogSitem.UI.Areas.AdminManager.Controllers
         public Kullanicilar KullaniciGiris(string kullaniciAdi, string sifre)
         {
             var kullaniciVarMi = _kullaniciRepository.Giris(kullaniciAdi, sifre);
+            ViewBag.kullaniciAdi = kullaniciVarMi.Adi;
+            ViewBag.kullaniciSoyadi = kullaniciVarMi.Soyadi;
             if (kullaniciVarMi == null)
             {
                 return null;
@@ -61,6 +67,11 @@ namespace BlogSitem.UI.Areas.AdminManager.Controllers
             }
             kullaniciAdiSoyadi = string.Empty;
 
+        }
+
+        public void KullaniciAdSoyad()
+        {
+            var kullanici = _kullaniciRepository.KullaniciGetir(kullaniciId);
         }
 
     }

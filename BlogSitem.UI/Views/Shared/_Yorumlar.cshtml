@@ -2,7 +2,7 @@
 
 <div class="blog-comments">
 
-    <h4 class="comments-count">ViewBag.yorumSayisi</h4>
+    <h4 class="comments-count">@ViewBag.yorumSayisi Yorum</h4>
     @{
         string makaleId = TempData["makaleID"].ToString();
     }
@@ -13,12 +13,13 @@
     {
         if (item.YorumUstID == 0)
         {
-            <div id="yorumAlani" class="comment">
+            <div class="comment">
+                
                 <div class="d-flex">
                     <div class="comment-img"><img src="~/template/assets/img/blog/comments-2.jpg" alt=""></div>
                     <div>
-                        <h5><a href="">Aron Alvarado</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
-                        <time datetime="2020-01-01">01 Jan, 2020</time>
+                        <h5><a href="">@(item.Adi + " " + item.Soyadi)</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Cevap Yaz</a></h5>
+                        <time datetime="2020-01-01">@item.YorumTarihi.ToShortTimeString()</time>
                         <p>
                             @item.Yorum
                         </p>
@@ -33,14 +34,10 @@
                             <div class="d-flex">
                                 <div class="comment-img"><img src="~/template/assets/img/blog/comments-3.jpg" alt=""></div>
                                 <div>
-                                    <h5><a href="">Lynda Small</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
-                                    <time datetime="2020-01-01">01 Jan, 2020</time>
+                                    <h5><a href="">@(itemAltYorum.Adi + " " + itemAltYorum.Soyadi)</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Cevap Yaz</a> <a href="#" class="reply"> <i class="bi bi-trash"></i></a>  </h5>
+                                    <time datetime="2020-01-01">@itemAltYorum.YorumTarihi.ToShortDateString()</time>
                                     <p>
-                                        Enim ipsa eum fugiat fuga repellat. Commodi quo quo dicta. Est ullam aspernatur ut vitae quia mollitia id non. Qui ad quas nostrum rerum sed necessitatibus aut est. Eum officiis sed repellat maxime vero nisi natus. Amet nesciunt nesciunt qui illum omnis est et dolor recusandae.
-
-                                        Recusandae sit ad aut impedit et. Ipsa labore dolor impedit et natus in porro aut. Magnam qui cum. Illo similique occaecati nihil modi eligendi. Pariatur distinctio labore omnis incidunt et illum. Expedita et dignissimos distinctio laborum minima fugiat.
-
-                                        Libero corporis qui. Nam illo odio beatae enim ducimus. Harum reiciendis error dolorum non autem quisquam vero rerum neque.
+                                        @itemAltYorum.Yorum
                                     </p>
                                 </div>
                             </div>
@@ -52,30 +49,31 @@
         }
     }
 
-    <div class="reply-form">
-        <h4>Yorum Yap</h4>
-        <p>Yorum yapabilmek için lütfen giriş yapın.* </p>
-        @if (Session["userName"] != null)
-        {
-            <div class="row">
-                <div class="col-md-6 form-group">
-                    <input name="name" type="text" class="form-control" placeholder="Your Name*">
-                </div>
-                <div class="col-md-6 form-group">
-                    <input name="email" type="text" class="form-control" placeholder="Your Email*">
-                </div>
+<div class="reply-form">
+    <h4>Yorum Yap</h4>
+    <p>Yorum yapabilmek için lütfen giriş yapın.* </p>
+    @if (Session["userName"] != null)
+    {
+        <input type="text" name="name" id="kullaniciId" value="@ViewBag.kullaniciId" hidden />
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <input name="name" type="text" class="form-control" placeholder="Your Name*">
             </div>
-            <div class="row">
-                <div class="col form-group">
-                    <textarea name="comment" id="comment-message" class="form-control" placeholder="Your Comment*"></textarea>
-                </div>
+            <div class="col-md-6 form-group">
+                <input name="email" type="text" class="form-control" placeholder="Your Email*">
             </div>
-            <button type="submit" onclick="YorumKaydet()" class="btn btn-primary">Yorum Gönder</button>
-        }
-        else
-        {
-            @Html.ActionLink("Yorum Yap", "GirisIndex", "Kullanici", new { id = makaleId }, new { @class = "btn btn-primary" })
-        }
+        </div>
+        <div class="row">
+            <div class="col form-group">
+                <textarea name="comment" id="comment-message" class="form-control" placeholder="Your Comment*"></textarea>
+            </div>
+        </div>
+        <input type="submit" onclick="YorumKaydet()" class="btn btn-primary" value="Yorum Gönder" />
+    }
+    else
+    {
+        @Html.ActionLink("Yorum Yap", "GirisIndex", "Kullanici", new { id = makaleId }, new { @class = "btn btn-primary" })
+    }
 
-    </div>
+</div>
 </div><!-- End blog comments -->
