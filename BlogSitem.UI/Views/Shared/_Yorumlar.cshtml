@@ -57,15 +57,15 @@
         <input type="text" name="name" id="kullaniciId" value="@ViewBag.kullaniciId" hidden />
         <div class="row">
             <div class="col-md-6 form-group">
-                <input name="name" type="text" class="form-control" placeholder="Your Name*">
+                <input name="name" id="ad" type="text" class="form-control" placeholder="Kullanıcı Adınız*">
             </div>
             <div class="col-md-6 form-group">
-                <input name="email" type="text" class="form-control" placeholder="Your Email*">
+                <input name="email" id="email" type="text" class="form-control" placeholder="Email*">
             </div>
         </div>
         <div class="row">
             <div class="col form-group">
-                <textarea name="comment" id="comment-message" class="form-control" placeholder="Your Comment*"></textarea>
+                <textarea name="comment" id="comment-message" class="form-control" placeholder="Yorumunuz"></textarea>
             </div>
         </div>
         <input type="submit" onclick="YorumKaydet()" class="btn btn-primary" value="Yorum Gönder" />
